@@ -19,6 +19,11 @@
 !/web/sites/*/default.settings.php
 !/web/sites/*/default.services.yml
 
+# Keep install-time deploy placeholders available.
+!/web/sites/default/settings.php
+!/web/sites/default/files/
+!/web/sites/default/files/.gitkeep
+
 # Local environment and secrets.
 .env
 .env.*
