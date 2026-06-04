@@ -1,0 +1,46 @@
+# Composer dependencies.
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+/drush/Commands/contrib/
+
+# Drupal site-specific runtime files.
+/web/sites/*/settings.php
+/web/sites/*/settings.local.php
+/web/sites/*/services.yml
+/web/sites/*/files/
+/web/sites/*/private/
+/web/sites/*/tmp/
+
+# Keep Drupal's templates committed.
+!/web/sites/*/default.settings.php
+!/web/sites/*/default.services.yml
+
+# Local environment and secrets.
+.env
+.env.*
+!.env.example
+*.local
+
+# Database dumps and local backups.
+*.sql
+*.sql.gz
+*.sqlite
+*.sqlite3
+*.bak
+*.backup
+
+# Logs, caches, and test output.
+*.log
+/.phpunit.result.cache
+/coverage/
+/.cache/
+
+# OS and editor noise.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
