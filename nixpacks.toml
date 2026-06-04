@@ -8,3 +8,6 @@ cmds = [
   "chmod -R a+rwX web/sites/default/files",
   "chmod a+rw web/sites/default/settings.php"
 ]
+
+[start]
+cmd = "mkdir -p /app/web/sites/default/files && chmod -R a+rwX /app/web/sites/default/files && chmod a+rw /app/web/sites/default/settings.php && node /assets/scripts/prestart.mjs /assets/nginx.template.conf /nginx.conf && (php-fpm -y /assets/php-fpm.conf & nginx -c /nginx.conf)"
