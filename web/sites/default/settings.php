@@ -90,6 +90,38 @@
  */
 $databases = [];
 
+$database_url = getenv('DATABASE_URL') ?: getenv('MYSQL_URL') ?: getenv('DB_CONNECTION_URL') ?: getenv('DATABASE_CONNECTION_URL');
+if ($database_url) {
+  $database_parts = parse_url($database_url);
+  if ($database_parts !== FALSE) {
+    $database_driver = $database_parts['scheme'] ?? 'mysql';
+    $database_driver = $database_driver === 'mysql2' ? 'mysql' : $database_driver;
+
+    $databases['default']['default'] = [
+      'driver' => $database_driver,
+      'database' => isset($database_parts['path']) ? ltrim($database_parts['path'], '/') : '',
+      'username' => isset($database_parts['user']) ? urldecode($database_parts['user']) : '',
+      'password' => isset($database_parts['pass']) ? urldecode($database_parts['pass']) : '',
+      'host' => $database_parts['host'] ?? 'localhost',
+      'port' => (string) ($database_parts['port'] ?? 3306),
+      'prefix' => '',
+      'collation' => 'utf8mb4_general_ci',
+    ];
+  }
+}
+elseif (getenv('DB_HOST') || getenv('DATABASE_HOST') || getenv('MYSQLHOST') || getenv('MYSQL_HOST') || getenv('DB_PASSWORD') || getenv('DATABASE_PASSWORD') || getenv('MYSQLPASSWORD') || getenv('MYSQL_PASSWORD')) {
+  $databases['default']['default'] = [
+    'driver' => getenv('DB_DRIVER') ?: getenv('MYSQL_DRIVER') ?: 'mysql',
+    'database' => getenv('DB_NAME') ?: getenv('DB_DATABASE') ?: getenv('DATABASE_NAME') ?: getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'suitable-white-crayfish',
+    'username' => getenv('DB_USER') ?: getenv('DB_USERNAME') ?: getenv('DATABASE_USER') ?: getenv('DATABASE_USERNAME') ?: getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'unaware-red-lamprey',
+    'password' => getenv('DB_PASSWORD') ?: getenv('DATABASE_PASSWORD') ?: getenv('MYSQLPASSWORD') ?: getenv('MYSQL_PASSWORD') ?: '',
+    'host' => getenv('DB_HOST') ?: getenv('DATABASE_HOST') ?: getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'localhost',
+    'port' => getenv('DB_PORT') ?: getenv('DATABASE_PORT') ?: getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: getenv('MYSQL_TCP_PORT') ?: '3306',
+    'prefix' => '',
+    'collation' => 'utf8mb4_general_ci',
+  ];
+}
+
 /**
  * Customizing database settings.
  *
@@ -286,7 +318,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = getenv('DRUPAL_HASH_SALT') ?: '';
 
 /**
  * Deployment identifier.
