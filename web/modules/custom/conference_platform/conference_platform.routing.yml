@@ -10,3 +10,27 @@ conference_platform.menu:
     parameters:
       menu_name:
         type: string
+
+conference_platform.event_availability:
+  path: '/api/conference-platform/events/{event}/availability'
+  defaults:
+    _controller: '\Drupal\conference_platform\Controller\EventRegistrationController::availability'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]
+  options:
+    parameters:
+      event:
+        type: entity:node
+
+conference_platform.event_register:
+  path: '/api/conference-platform/events/{event}/registrations'
+  defaults:
+    _controller: '\Drupal\conference_platform\Controller\EventRegistrationController::register'
+  requirements:
+    _permission: 'register for conference events'
+  methods: [POST]
+  options:
+    parameters:
+      event:
+        type: entity:node

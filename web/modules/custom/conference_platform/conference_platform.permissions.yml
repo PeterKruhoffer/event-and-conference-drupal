@@ -3,6 +3,10 @@ administer conference platform:
   description: 'Manage all conference platform settings and content.'
   restrict access: true
 
+register for conference events:
+  title: 'Register for conference events'
+  description: 'Submit attendee registrations through the decoupled frontend.'
+
 view conference attendee profiles:
   title: 'View conference attendee profiles'
 create conference attendee profiles:
