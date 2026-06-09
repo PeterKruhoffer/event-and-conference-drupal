@@ -1,0 +1,10 @@
+name: Conference Platform
+type: module
+description: Provides conference navigation, attendee profiles, event registrations, waitlists, and capacity enforcement.
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:menu_link_content
+  - drupal:node
+  - drupal:options
+  - drupal:user

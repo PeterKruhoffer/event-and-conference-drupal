@@ -1,0 +1,20 @@
+conference_platform.attendee_profiles:
+  title: 'Attendee profiles'
+  description: 'Manage conference attendee profiles.'
+  route_name: entity.conference_attendee_profile.collection
+  parent: system.admin_content
+  weight: 20
+
+conference_platform.event_registrations:
+  title: 'Event registrations'
+  description: 'Manage event registrations and capacity decisions.'
+  route_name: entity.conference_event_registration.collection
+  parent: system.admin_content
+  weight: 21
+
+conference_platform.waitlist_entries:
+  title: 'Waitlist entries'
+  description: 'Manage event waitlist entries.'
+  route_name: entity.conference_waitlist_entry.collection
+  parent: system.admin_content
+  weight: 22

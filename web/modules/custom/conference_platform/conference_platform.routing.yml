@@ -1,0 +1,12 @@
+conference_platform.menu:
+  path: '/api/conference-platform/menu/{menu_name}'
+  defaults:
+    _controller: '\Drupal\conference_platform\Controller\MenuController::tree'
+    menu_name: 'main'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]
+  options:
+    parameters:
+      menu_name:
+        type: string

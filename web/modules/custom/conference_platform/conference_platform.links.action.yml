@@ -1,0 +1,17 @@
+conference_platform.attendee_profile_add:
+  route_name: entity.conference_attendee_profile.add_form
+  title: 'Add attendee profile'
+  appears_on:
+    - entity.conference_attendee_profile.collection
+
+conference_platform.event_registration_add:
+  route_name: entity.conference_event_registration.add_form
+  title: 'Add event registration'
+  appears_on:
+    - entity.conference_event_registration.collection
+
+conference_platform.waitlist_entry_add:
+  route_name: entity.conference_waitlist_entry.add_form
+  title: 'Add waitlist entry'
+  appears_on:
+    - entity.conference_waitlist_entry.collection

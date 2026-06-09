@@ -1,0 +1,49 @@
+<?php
+
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Seeds default frontend navigation links in Drupal's Main navigation menu.
+ */
+function conference_platform_install(): void {
+  if (!\Drupal::moduleHandler()->moduleExists('menu_link_content')) {
+    return;
+  }
+
+  $links = [
+    [
+      'title' => 'Events',
+      'uri' => 'internal:/events',
+      'weight' => 0,
+    ],
+    [
+      'title' => 'Read the docs',
+      'uri' => 'https://next-drupal.org/docs',
+      'weight' => 10,
+    ],
+  ];
+
+  foreach ($links as $link) {
+    $exists = \Drupal::entityTypeManager()
+      ->getStorage('menu_link_content')
+      ->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('menu_name', 'main')
+      ->condition('link.uri', $link['uri'])
+      ->range(0, 1)
+      ->execute();
+
+    if ($exists) {
+      continue;
+    }
+
+    MenuLinkContent::create([
+      'title' => $link['title'],
+      'link' => ['uri' => $link['uri']],
+      'menu_name' => 'main',
+      'enabled' => TRUE,
+      'expanded' => FALSE,
+      'weight' => $link['weight'],
+    ])->save();
+  }
+}

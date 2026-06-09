@@ -1,0 +1,31 @@
+administer conference platform:
+  title: 'Administer conference platform'
+  description: 'Manage all conference platform settings and content.'
+  restrict access: true
+
+view conference attendee profiles:
+  title: 'View conference attendee profiles'
+create conference attendee profiles:
+  title: 'Create conference attendee profiles'
+edit conference attendee profiles:
+  title: 'Edit conference attendee profiles'
+delete conference attendee profiles:
+  title: 'Delete conference attendee profiles'
+
+view conference event registrations:
+  title: 'View conference event registrations'
+create conference event registrations:
+  title: 'Create conference event registrations'
+edit conference event registrations:
+  title: 'Edit conference event registrations'
+delete conference event registrations:
+  title: 'Delete conference event registrations'
+
+view conference waitlist entries:
+  title: 'View conference waitlist entries'
+create conference waitlist entries:
+  title: 'Create conference waitlist entries'
+edit conference waitlist entries:
+  title: 'Edit conference waitlist entries'
+delete conference waitlist entries:
+  title: 'Delete conference waitlist entries'
